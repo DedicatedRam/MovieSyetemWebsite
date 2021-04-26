@@ -13,10 +13,12 @@ namespace Mk4.ViewComponents
         public class ShoppingCartViewComponent : ViewComponent
         {
             const string SessionCart = "_Cart";
-
-            public ShoppingCartViewComponent()
-            {
-            }
+            private readonly IHttpContextAccessor _contextAccesor;
+        public ShoppingCartViewComponent(IHttpContextAccessor newContextAccessor)
+        { 
+            _contextAccesor = newContextAccessor; 
+        }
+        
 
             public async Task<IViewComponentResult> InvokeAsync()
             {

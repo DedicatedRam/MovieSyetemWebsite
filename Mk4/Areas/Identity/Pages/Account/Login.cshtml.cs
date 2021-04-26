@@ -22,17 +22,15 @@ namespace Mk4.Areas.Identity.Pages.Account
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly ILogger<LoginModel> _logger;
-        private readonly AppIdentityDbContext _contextIdentity;
 
         public LoginModel(SignInManager<IdentityUser> signInManager, 
             ILogger<LoginModel> logger,
-            UserManager<IdentityUser> userManager,
-            AppIdentityDbContext identity)
+            UserManager<IdentityUser> userManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
-            _contextIdentity = identity;
+            
         }
 
         [BindProperty]
@@ -88,8 +86,8 @@ namespace Mk4.Areas.Identity.Pages.Account
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User logged in.");
-                    string UserID = _contextIdentity.Users.Find(_userManager.GetUserId(User)).Id;
-                    HttpContext.Session.SetString("UserID", UserID);
+                    //string UserID = _contextIdentity.Users.Find(_userManager.GetUserId(User)).Id;
+                    HttpContext.Session.SetString("UserEmail", Input.Email);
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)

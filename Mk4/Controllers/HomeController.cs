@@ -69,16 +69,14 @@ namespace Mk4.Controllers
 
             int FilmID = int.Parse(form["FilmID"]);
             string FilmTitle = form["FilmTitle"].ToString();
-            decimal FilmPrice = Decimal.Parse(form["FilmPrice"]);
+            decimal FilmPrice = Decimal.Parse(form["Cost"]);
             int OrderQuantity = int.Parse(form["OrderQuantity"]);
-            int OrderDuration = int.Parse(form["OrderDuration"]);
             CartItem newOrder = new CartItem();
             newOrder.FilmID = FilmID;
             newOrder.FilmTitle = FilmTitle;
             newOrder.FilmPrice = FilmPrice;
             newOrder.OrderQuantity = OrderQuantity;
             newOrder.OrderDate = DateTime.Now;
-            newOrder.DaysDuration = OrderDuration;
 
             var CartList = new List<CartItem>();
             if (HttpContext.Session.GetString(SessionCart) != null)
@@ -102,7 +100,7 @@ namespace Mk4.Controllers
                 CartList.Add(newOrder);
             }
             HttpContext.Session.SetString(SessionCart, JsonSerializer.Serialize(CartList));
-            return RedirectToAction("Details");
+            return RedirectToAction("FilmDetails");
 
         }
 

@@ -5,14 +5,17 @@ using System.Threading.Tasks;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Web.Mvc;
 
 namespace Mk4.Models
 {
     public class Movie
     {
         [Key]
+
         public int FilmID { get; set; }
         [Required]
+        
         [Column(TypeName = "varchar(100)")]
 
 

@@ -12,6 +12,7 @@ namespace Mk4.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+
         }
         public DbSet<Mk4.Models.Movie> Movies { get; set; }
         public DbSet<Mk4.Models.Booking> Bookings { get; set; }

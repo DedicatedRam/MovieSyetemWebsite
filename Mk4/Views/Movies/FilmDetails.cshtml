@@ -116,20 +116,16 @@
 
         <input type="hidden" value="@Model.FilmTitle" id="FilmTitle" name="FilmTitle" />
 
-        <input type="hidden" value="@Model.Cost" id="FilmPrice" name="FilmPrice" />
+        <input type="hidden" value="@Model.Cost" id="Cost" name="Cost" />
 
         <div>
 
             <label for="OrderQuantity">Quantity</label>
 
             <input type="number" id="OrderQuantity" name="OrderQuantity" min="1" max="10" value="1" />
-            <br />
-            <br />
-            <label for="OrderDuration">State how many days you would like access to these films for</label>
 
-            <input type="number" id="OrderDuration" name="OrderDuration" min="1" max="14" value="1" />
         </div>
-        <br />
+
         <div>
 
             <input type="submit" value="Add To Cart" class="cta" />
