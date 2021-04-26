@@ -1,0 +1,51 @@
+﻿@model Mk4.Models.Booking
+    <link rel="stylesheet" href="~/css/site.css" />
+    <div class="StreamForm">
+        <h4>Booking</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Stream">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="FilmID" class="control-label"></label>
+                        <input asp-for="FilmID" class="form-control" />
+                        <span asp-validation-for="FilmID" class="text-danger"></span>
+                    </div>
+@*                    <div class="form-group">
+                        <label asp-for="UserID" class="control-label"></label>
+                        <input asp-for="UserID" class="form-control" />
+                        <span asp-validation-for="UserID" class="text-danger"></span>
+                    </div>*@
+                    @*<div class="form-group">
+                        <label asp-for="startRent" class="control-label"></label>
+                        <input asp-for="startRent" class="form-control" />
+                        <span asp-validation-for="startRent" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="endRent" class="control-label"></label>
+                        <input asp-for="endRent" class="form-control" />
+                        <span asp-validation-for="endRent" class="text-danger"></span>
+                    </div>*@
+                    <div class="form-group">
+                        <label asp-for="daysDuration" class="control-label"></label>
+                        <input asp-for="daysDuration" class="form-control" />
+                        <span asp-validation-for="daysDuration" class="text-danger"></span>
+                    </div>
+@*                    <div class="form-group">
+                        <label asp-for="Cost" class="control-label"></label>
+                        <input asp-for="Cost" class="form-control" />
+                        <span asp-validation-for="Cost" class="text-danger"></span>
+                    </div>*@
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
+
+    </div>

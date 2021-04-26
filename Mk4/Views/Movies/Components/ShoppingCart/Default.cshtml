@@ -1,0 +1,40 @@
+﻿@{
+    decimal cartTotal = 0;
+}
+    <link rel="stylesheet" href="~/css/site.css" />
+<div class="cartSummary">
+
+    <h3>Cart Summary</h3>
+
+
+    @if (Model.Count == 0)
+
+    {
+
+        <p>Shopping Cart Empty.</p>
+
+    }
+
+    else
+
+    {
+
+        @foreach (var item in Model)
+
+        {
+
+            cartTotal += item.OrderQuantity * item.FilmPrice;
+
+            <h4>@item.FilmTitle</h4>
+            <p>
+
+                @item.OrderQuantity at £@((item.FilmPrice).ToString("0.00")) each = £@((item.OrderQuantity * item.FilmPrice).ToString("0.00"))
+            </p>
+
+        }
+
+        <h4>Total £@cartTotal.ToString("0.00")</h4>
+
+        <p><a asp-controller="Home" asp-action="ManageCart">Manage Cart</a></p>
+    }
+</div>

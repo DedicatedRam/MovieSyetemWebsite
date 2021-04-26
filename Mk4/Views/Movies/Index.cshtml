@@ -1,0 +1,81 @@
+﻿@model IEnumerable<Mk4.Models.Movie>
+
+@{
+    ViewData["Title"] = "Index";
+}
+    <link rel="stylesheet" type="text/css" href="~/css/site.css" />
+<h1>Index</h1>
+<div class="shoppingCart">
+
+    @await Component.InvokeAsync("ShoppingCart")
+
+</div>
+<p class="CreateButton">
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FilmTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FilmCertificate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FilmDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FilmImage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cost)
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FilmTitle)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FilmCertificate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FilmDescription)
+                    </td>
+                    <td>
+                        <img class="Poster" src="@item.FilmImage" alt="@item.FilmTitle" />
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cost)
+                    </td>
+
+                    <td>
+                        <div class="FilmOptionLinks">
+                            <b>
+                                
+                                    <a asp-action="Edit" asp-route-id="@item.FilmID">Edit</a>
+                                    <br />
+                                    <a asp-action="Delete" asp-route-id="@item.FilmID">Delete</a>
+                                
+
+                                <br />
+                                <a asp-action="Details" asp-route-id="@item.FilmID">Details</a>
+
+                                <br />
+                                <a asp-action="Stream" asp-route-id="@item.FilmID">Stream</a>
+                            </b>
+                        </div>
+                    </td>
+            
+        </tr>
+
+        }
+    </tbody>
+</table>

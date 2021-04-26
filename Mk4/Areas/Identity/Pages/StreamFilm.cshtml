@@ -1,0 +1,60 @@
+﻿@page
+@model Mk4.Models.Movie
+@{
+    ViewData["Title"] = "Stream your film";
+}
+<h1>Add Film</h1>
+
+
+
+<form method="post">
+
+    <input type="hidden" value="@Model.FilmID" id="FilmID" name="FilmID" />
+
+    <input type="hidden" value="@Model.FilmTitle" id="FilmTitle" name="FilmTitle" />
+
+    <input type="hidden" value="@Model.Cost" id="FilmPrice" name="FilmPrice" />
+
+    <div>
+
+        <label for="OrderQuantity">Quantity</label>
+
+        <input type="number" id="OrderQuantity" name="OrderQuantity" min="1" max="10" value="1" />
+
+    </div>
+
+    <div>
+
+        <input type="submit" value="Add To Cart" class="cta" />
+
+    </div>
+
+</form>
+
+
+@*<form method="post">
+    <div>
+        <label asp-for="newBooking.FilmID">Film Title</label>
+        <input type="text" asp-for="newBooking.FilmID" />
+        <span asp-validation-for="newBooking.FilmID" class="error"></span>
+    </div>
+    <div>
+        <label asp-for="newBooking.daysDuration">Film Title</label>
+        <input type="number" asp-for="newBooking.daysDuration" />
+        <span asp-validation-for="newBooking.daysDuration" class="error"></span>
+    </div>
+    <div>
+        <label>Card number</label>
+        <input type="number" />
+        <span class="error"></span>
+    </div>
+    <div>
+        <label>Security Number</label>
+        <input type="number" />
+        <span class="error"></span>
+    </div>
+
+    <div>
+        <input type="submit" value="Add" class="add" />
+    </div>
+</form>*@

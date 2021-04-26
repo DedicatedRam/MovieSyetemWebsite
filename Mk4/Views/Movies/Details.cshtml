@@ -1,0 +1,144 @@
+﻿@model Mk4.Models.Movie
+
+@{
+    ViewData["Title"] = "Details";
+}
+<link rel="stylesheet" type="text/css" href="~/css/site.css" />
+
+<h1>Details</h1>
+<div class="shoppingCart">
+
+    @await Component.InvokeAsync("ShoppingCart")
+
+</div>
+<div class="detailsBlock">
+<div>
+    <h4>Movie</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FilmTitle)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FilmTitle)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FilmCertificate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FilmCertificate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.FilmDescription)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.FilmDescription)
+        </dd>
+        
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Cost)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Cost)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Rating)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Rating)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ReleaseDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.ReleaseDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.RunTimeMins)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.RunTimeMins)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.OMDB_URL)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.OMDB_URL)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Genres)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Genres)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Director)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Director)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Actors)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Actors)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Awards)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Awards)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Metascore)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Metascore)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IMDB_Rating)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IMDB_Rating)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.IMDB_Votes)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.IMDB_Votes)
+        </dd>
+    </dl>
+</div>
+<div>
+    <form method="post">
+
+        <input type="hidden" value="@Model.FilmID" id="FilmID" name="FilmID" />
+
+        <input type="hidden" value="@Model.FilmTitle" id="FilmTitle" name="FilmTitle" />
+
+        <input type="hidden" value="@Model.Cost" id="FilmPrice" name="FilmPrice" />
+
+        <div>
+
+            <label for="OrderQuantity">Quantity</label>
+
+            <input type="number" id="OrderQuantity" name="OrderQuantity" min="1" max="10" value="1" />
+            <br />
+            <br />
+            <label for="OrderDuration">State how many days you would like access to these films for</label>
+
+            <input type="number" id="OrderDuration" name="OrderDuration" min="1" max="14" value="1" />
+        </div>
+        <br />
+        <div>
+
+            <input type="submit" value="Add To Cart" class="cta" />
+
+        </div>
+
+    </form>
+    <a asp-action="Edit" asp-route-id="@Model.FilmID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
+
+</div>

@@ -1,0 +1,46 @@
+﻿
+
+<h4>Search Movie</h4>
+<div class="shoppingCart">
+
+    @await Component.InvokeAsync("ShoppingCart")
+
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="ShowSearchResult">
+            
+            <div class="form-group">
+                <label for="SearchPhrase" class="control-label"></label>
+                <input name="SearchTitle" class="form-control" />
+                
+            </div>
+            <div class="form-group">
+                <label for="SearchRating" class="control-label"></label>
+                <select type="text" name="SearchRating" class="form-control" />
+                <datalist>
+                    <option>No Filter</option>
+                    <option>U</option>
+                    <option>PG</option>
+                    <option>12</option>
+                    <option>12A</option>
+                    <option>15</option>
+                    <option>18</option>
+                </datalist>
+            </div>
+            
+            <div class="form-group">
+                <input type="submit" value="Search" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
