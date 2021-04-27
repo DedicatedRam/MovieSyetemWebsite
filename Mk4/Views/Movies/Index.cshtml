@@ -59,11 +59,12 @@
                     <td>
                         <div class="FilmOptionLinks">
                             <b>
-                                
+                                @if(User.IsInRole("Manager")){
+
                                     <a asp-action="Edit" asp-route-id="@item.FilmID">Edit</a>
                                     <br />
                                     <a asp-action="Delete" asp-route-id="@item.FilmID">Delete</a>
-                                
+                                }
 
                                 <br />
                                 <a asp-action="FilmDetails" asp-route-id="@item.FilmID">Details</a>

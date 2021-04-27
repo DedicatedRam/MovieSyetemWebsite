@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -15,6 +16,7 @@ namespace Mk4.Controllers
     public class MoviesController : Controller
     {
         private readonly ApplicationDbContext _context;
+        const string SessionCart = "_Cart";
 
         public MoviesController(ApplicationDbContext context)
         {
@@ -79,6 +81,9 @@ namespace Mk4.Controllers
             }
         }
 
+
+
+
         // GET: Movies/Details/5
         public async Task<IActionResult> FilmDetails(int? id)
         {
@@ -97,9 +102,92 @@ namespace Mk4.Controllers
             return View(movie);
         }
 
+        [HttpPost]
+        public IActionResult FilmDetails(IFormCollection form)
+
+        {
+
+            int FilmID = int.Parse(form["FilmID"]);
+            string FilmTitle = form["FilmTitle"].ToString();
+            decimal FilmPrice = Decimal.Parse(form["Cost"]);
+            int OrderQuantity = int.Parse(form["OrderQuantity"]);
+            CartItem newOrder = new CartItem();
+            newOrder.FilmID = FilmID;
+            newOrder.FilmTitle = FilmTitle;
+            newOrder.FilmPrice = FilmPrice;
+            newOrder.OrderQuantity = OrderQuantity;
+            newOrder.OrderDate = DateTime.Now;
+
+            var CartList = new List<CartItem>();
+            if (HttpContext.Session.GetString(SessionCart) != null)
+            {
+                string serialJSON = HttpContext.Session.GetString(SessionCart);
+                CartList = JsonSerializer.Deserialize<List<CartItem>>(serialJSON);
+                //
+                var item = CartList.FirstOrDefault(o => o.FilmID == FilmID);
+                if (item != null)
+                {
+                    item.OrderQuantity += OrderQuantity;
+                }
+                else
+                {
+                    CartList.Add(newOrder);
+                }
+
+            }
+            else
+            {
+                CartList.Add(newOrder);
+            }
+            HttpContext.Session.SetString(SessionCart, JsonSerializer.Serialize(CartList));
+            return RedirectToAction("FilmDetails");
+
+        }
+
+
+        [HttpPost]
+        public IActionResult RemoveCartItem(IFormCollection form)
+        {
+            int FilmID = int.Parse(form["FilmID"]);
+            var CartList = new List<CartItem>();
+            if (HttpContext.Session.GetString(SessionCart) != null)
+            {
+                string serialJSON = HttpContext.Session.GetString(SessionCart);
+                CartList = JsonSerializer.Deserialize<List<CartItem>>(serialJSON);
+                var item = CartList.FirstOrDefault(o => o.FilmID == FilmID);
+                if (item != null)
+                {
+                    CartList.Remove(item);
+                }
+
+            }
+
+            HttpContext.Session.SetString(SessionCart, JsonSerializer.Serialize(CartList));
+            TempData["msg"] = "Item Removed";
+            return RedirectToAction("ManageCart");
+        }
+
+        [HttpGet]
+        public IActionResult ManageCart()
+
+        {
+            List<CartItem> cart = new List<CartItem>();
+            if (HttpContext.Session.GetString(SessionCart) != null)
+            {
+                string serialJSON = HttpContext.Session.GetString(SessionCart);
+                cart = JsonSerializer.Deserialize<List<CartItem>>(serialJSON);
+            }
+            if (TempData["msg"] != null)
+            {
+                ViewBag.msg = TempData["msg"].ToString();
+            }
+            return View(cart);
+
+        }
+
         // GET: Movies/Create
 
-        [Authorize(Roles = "Manager")]
+        [Authorize]
         public IActionResult Create()
         {
             return View();
@@ -107,7 +195,7 @@ namespace Mk4.Controllers
 
         // POST: Movies/Create
         
-        [Authorize(Roles = "Manager")]
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("FilmID,FilmTitle,FilmCertificate,FilmDescription,FilmImage,Cost,Rating,ReleaseDate,RunTimeMins,OMDB_URL,Genres,Director,Actors,Awards,Metascore,IMDB_Rating,IMDB_Votes")] Movie movie)
@@ -122,8 +210,8 @@ namespace Mk4.Controllers
         }
 
         // GET: Movies/Edit/5
-        [Authorize(Roles = "MANAGER")]
-        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Manager")]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int? id)
         {
 
@@ -143,9 +231,9 @@ namespace Mk4.Controllers
         // POST: Movies/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for 
         // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [Authorize(Roles = "MANAGER")]
+        [Authorize(Roles = "Manager")]
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("FilmID,FilmTitle,FilmCertificate,FilmDescription,FilmImage,Cost,Rating,ReleaseDate,RunTimeMins,OMDB_URL,Genres,Director,Actors,Awards,Metascore,IMDB_Rating,IMDB_Votes")] Movie movie)
         {
             if (id != movie.FilmID)
@@ -177,7 +265,7 @@ namespace Mk4.Controllers
         }
 
         // GET: Movies/Delete/5
-        [Authorize(Roles = "MANAGER")]
+        [Authorize(Roles = "Manager")]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)

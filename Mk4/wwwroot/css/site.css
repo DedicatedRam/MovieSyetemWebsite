@@ -145,10 +145,17 @@ html {
 :root {
     --imgBack: url(https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpapercan.com%2Fdownload%2F1920x1080%2F25aa8754%2Fmovie-poster-of-john-wick-3.jpg&f=1&nofb=1);
 }
+.backgroundIMG {
+    background-image: var(--imgBack);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: -1;
+}
 body {
     /* Margin bottom by footer height */
     
-    background-image: var(--imgBack);
+    
     
     margin-bottom: 60px;
 }

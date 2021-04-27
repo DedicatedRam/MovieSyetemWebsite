@@ -7,9 +7,18 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <script src="site.js"></script>
+
+    <script>
+
+        window.onload = changeBack();
+    </script>
+
 </head>
 
 <body>
+    <div class="backgroundIMG">
+
+    </div>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-dark border-bottom box-shadow mb-3">
             <div class="container">
@@ -35,10 +44,7 @@
     <div class="container">
         <main role="main" class="pb-3">
             @RenderBody()
-            <script>
-                
-                window.onload = changeBack();
-            </script>
+            
         </main>
     </div>
 
