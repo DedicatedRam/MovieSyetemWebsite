@@ -10,18 +10,19 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
+using Mk4.Security;
 
 namespace Mk4.Areas.Identity.Pages.Account.Manage
 {
     public partial class EmailModel : PageModel
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<AppIdentityUser> _userManager;
+        private readonly SignInManager<AppIdentityUser> _signInManager;
         private readonly IEmailSender _emailSender;
 
         public EmailModel(
-            UserManager<IdentityUser> userManager,
-            SignInManager<IdentityUser> signInManager,
+            UserManager<AppIdentityUser> userManager,
+            SignInManager<AppIdentityUser> signInManager,
             IEmailSender emailSender)
         {
             _userManager = userManager;
@@ -51,7 +52,7 @@ namespace Mk4.Areas.Identity.Pages.Account.Manage
 
         private async Task LoadAsync(IdentityUser user)
         {
-            var email = await _userManager.GetEmailAsync(user);
+            var email = await _userManager.GetEmailAsync((AppIdentityUser)user);
             Email = email;
 
             Input = new InputModel
@@ -59,7 +60,7 @@ namespace Mk4.Areas.Identity.Pages.Account.Manage
                 NewEmail = email,
             };
 
-            IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync(user);
+            IsEmailConfirmed = await _userManager.IsEmailConfirmedAsync((AppIdentityUser)user);
         }
 
         public async Task<IActionResult> OnGetAsync()

@@ -3,105 +3,107 @@
 @{
     ViewData["Title"] = "Create";
 }
+    <link rel="stylesheet" type="text/css" href="~/css/site.css" />
+    <div class="CreateBlock">
+        <h1>Create</h1>
 
-<h1>Create</h1>
+        <h4>Movie</h4>
+        <hr />
+        <div class="row">
+            <div class="col-md-4">
+                <form asp-action="Create">
+                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                    <div class="form-group">
+                        <label asp-for="FilmTitle" class="control-label"></label>
+                        <input asp-for="FilmTitle" class="form-control" />
+                        <span asp-validation-for="FilmTitle" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FilmCertificate" class="control-label"></label>
+                        <input asp-for="FilmCertificate" class="form-control" />
+                        <span asp-validation-for="FilmCertificate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FilmDescription" class="control-label"></label>
+                        <input asp-for="FilmDescription" class="form-control" />
+                        <span asp-validation-for="FilmDescription" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="FilmImage" class="control-label"></label>
+                        <input asp-for="FilmImage" class="form-control" />
+                        <span asp-validation-for="FilmImage" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Cost" class="control-label"></label>
+                        <input asp-for="Cost" class="form-control" />
+                        <span asp-validation-for="Cost" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Rating" class="control-label"></label>
+                        <input asp-for="Rating" class="form-control" />
+                        <span asp-validation-for="Rating" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="ReleaseDate" class="control-label"></label>
+                        <input asp-for="ReleaseDate" class="form-control" />
+                        <span asp-validation-for="ReleaseDate" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="RunTimeMins" class="control-label"></label>
+                        <input asp-for="RunTimeMins" class="form-control" />
+                        <span asp-validation-for="RunTimeMins" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="OMDB_URL" class="control-label"></label>
+                        <input asp-for="OMDB_URL" class="form-control" />
+                        <span asp-validation-for="OMDB_URL" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Genres" class="control-label"></label>
+                        <input asp-for="Genres" class="form-control" />
+                        <span asp-validation-for="Genres" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Director" class="control-label"></label>
+                        <input asp-for="Director" class="form-control" />
+                        <span asp-validation-for="Director" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Actors" class="control-label"></label>
+                        <input asp-for="Actors" class="form-control" />
+                        <span asp-validation-for="Actors" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Awards" class="control-label"></label>
+                        <input asp-for="Awards" class="form-control" />
+                        <span asp-validation-for="Awards" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="Metascore" class="control-label"></label>
+                        <input asp-for="Metascore" class="form-control" />
+                        <span asp-validation-for="Metascore" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="IMDB_Rating" class="control-label"></label>
+                        <input asp-for="IMDB_Rating" class="form-control" />
+                        <span asp-validation-for="IMDB_Rating" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label asp-for="IMDB_Votes" class="control-label"></label>
+                        <input asp-for="IMDB_Votes" class="form-control" />
+                        <span asp-validation-for="IMDB_Votes" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" value="Create" class="btn btn-primary" />
+                    </div>
+                </form>
+            </div>
+        </div>
 
-<h4>Movie</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="FilmTitle" class="control-label"></label>
-                <input asp-for="FilmTitle" class="form-control" />
-                <span asp-validation-for="FilmTitle" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FilmCertificate" class="control-label"></label>
-                <input asp-for="FilmCertificate" class="form-control" />
-                <span asp-validation-for="FilmCertificate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FilmDescription" class="control-label"></label>
-                <input asp-for="FilmDescription" class="form-control" />
-                <span asp-validation-for="FilmDescription" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="FilmImage" class="control-label"></label>
-                <input asp-for="FilmImage" class="form-control" />
-                <span asp-validation-for="FilmImage" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Cost" class="control-label"></label>
-                <input asp-for="Cost" class="form-control" />
-                <span asp-validation-for="Cost" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Rating" class="control-label"></label>
-                <input asp-for="Rating" class="form-control" />
-                <span asp-validation-for="Rating" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="ReleaseDate" class="control-label"></label>
-                <input asp-for="ReleaseDate" class="form-control" />
-                <span asp-validation-for="ReleaseDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="RunTimeMins" class="control-label"></label>
-                <input asp-for="RunTimeMins" class="form-control" />
-                <span asp-validation-for="RunTimeMins" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="OMDB_URL" class="control-label"></label>
-                <input asp-for="OMDB_URL" class="form-control" />
-                <span asp-validation-for="OMDB_URL" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Genres" class="control-label"></label>
-                <input asp-for="Genres" class="form-control" />
-                <span asp-validation-for="Genres" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Director" class="control-label"></label>
-                <input asp-for="Director" class="form-control" />
-                <span asp-validation-for="Director" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Actors" class="control-label"></label>
-                <input asp-for="Actors" class="form-control" />
-                <span asp-validation-for="Actors" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Awards" class="control-label"></label>
-                <input asp-for="Awards" class="form-control" />
-                <span asp-validation-for="Awards" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Metascore" class="control-label"></label>
-                <input asp-for="Metascore" class="form-control" />
-                <span asp-validation-for="Metascore" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IMDB_Rating" class="control-label"></label>
-                <input asp-for="IMDB_Rating" class="form-control" />
-                <span asp-validation-for="IMDB_Rating" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="IMDB_Votes" class="control-label"></label>
-                <input asp-for="IMDB_Votes" class="form-control" />
-                <span asp-validation-for="IMDB_Votes" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-        </form>
+        <div>
+            <a asp-action="Index">Back to List</a>
+        </div>
     </div>
-</div>
-
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

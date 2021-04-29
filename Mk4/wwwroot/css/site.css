@@ -8,6 +8,13 @@ tr {
     border-radius: 15px;
     padding: 7.5%;
 }
+.CreateBlock {
+    border: 2px solid black;
+    background-color: dimgrey;
+    color: white;
+    border-radius: 15px;
+    padding: 7.5%;
+}
 
 .EditBlock {
     border: 2px solid black;
