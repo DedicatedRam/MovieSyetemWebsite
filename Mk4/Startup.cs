@@ -40,7 +40,9 @@ options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
                 .AddEntityFrameworkStores<ApplicationDbContext>();*/
 
             services.AddIdentity<AppIdentityUser, AppIdentityRole>()
+                .AddDefaultTokenProviders().AddDefaultUI()
                 .AddEntityFrameworkStores<AppIdentityDbContext>();
+                
 
             services.AddSession();
             //services.AddMvc();

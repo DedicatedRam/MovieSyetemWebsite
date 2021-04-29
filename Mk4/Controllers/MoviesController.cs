@@ -29,10 +29,6 @@ namespace Mk4.Controllers
         [Authorize]
         public async Task<IActionResult> Stream(int? id)
         {
-            
-            
-
-            
 
             return View();
         }
@@ -81,7 +77,16 @@ namespace Mk4.Controllers
             }
         }
 
+        [HttpPost]
+        public IActionResult FinishCart(IFormCollection form)
+        {
+           
+            string UserID = form["UserID"].ToString();
+            int Quantity = int.Parse(form["Quantity"]);
+            string Total = form["CartTotal"].ToString();
 
+            return View();
+        }
 
 
         // GET: Movies/Details/5
@@ -195,7 +200,7 @@ namespace Mk4.Controllers
 
         // POST: Movies/Create
         
-        [Authorize]
+        [Authorize(Roles = "Manager")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("FilmID,FilmTitle,FilmCertificate,FilmDescription,FilmImage,Cost,Rating,ReleaseDate,RunTimeMins,OMDB_URL,Genres,Director,Actors,Awards,Metascore,IMDB_Rating,IMDB_Votes")] Movie movie)

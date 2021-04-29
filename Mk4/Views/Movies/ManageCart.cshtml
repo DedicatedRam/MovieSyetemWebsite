@@ -77,10 +77,10 @@
 
                                 <input type="hidden" name="FilmID" id="FilmID" value="@item.FilmID" />
 
-                                <input type="submit" value="Delete" />
+                                <input type="submit" value="Delete"  />
 
+                            
                             </form>
-
                         </td>
 
                     </tr>
@@ -99,7 +99,19 @@
 
                     <td>£@cartTotal.ToString("0.00")</td>
 
-                    <td></td>
+                    <td>
+                        <form method="post" asp-action="FinishCart">
+
+                            <input type="hidden" name="UserID" id="UserID" value="@User.Identity.Name" />
+
+                            <input type="hidden" name="Quantity" id="Quantity" value="@Model.Count" />
+
+                            <input type="hidden" name="CartTotal" id="CartTotal" value="@cartTotal" />
+
+                            <input type="submit" value="FinishCart" />
+
+                        </form>
+                    </td>
 
                 </tr>
 
